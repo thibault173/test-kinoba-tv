@@ -11,6 +11,10 @@
 /db/*.sqlite3
 /db/*.sqlite3-journal
 
+# Ignore db files
+tribe_members.sqlite
+dump.sql
+
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*

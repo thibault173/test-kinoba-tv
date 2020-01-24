@@ -12,4 +12,14 @@
 
 ActiveRecord::Schema.define(version: 0) do
 
+  create_table "tribe_members", id: false, force: :cascade do |t|
+    t.integer "id"
+    t.text "name"
+    t.text "surname"
+    t.date "birthdate"
+    t.integer "ancestor"
+    t.text "latitude"
+    t.text "longitude"
+  end
+
 end
