@@ -10,15 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_28_084912) do
+ActiveRecord::Schema.define(version: 2020_01_28_093504) do
 
   create_table "tribe_members", force: :cascade do |t|
     t.text "name"
     t.text "surname"
     t.date "birthdate"
-    t.integer "ancestor"
+    t.integer "ancestor_id"
     t.text "latitude"
     t.text "longitude"
+    t.index ["ancestor_id"], name: "index_tribe_members_on_ancestor_id"
   end
 
 end
