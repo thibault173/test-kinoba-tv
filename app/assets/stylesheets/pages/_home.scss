@@ -1,8 +1,18 @@
 .pages-home {
-  .arrows {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    padding: 10px;
+  display: flex;
+}
+
+.arrows {
+  display: flex;
+  justify-content: center;
+  > * {
+    margin: 5px;
   }
+}
+
+#map {
+  width: 70%;
+  height: calc( 100vh - 76px );
+  position: sticky;
+  top: 76px;
 }

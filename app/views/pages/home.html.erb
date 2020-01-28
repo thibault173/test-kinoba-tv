@@ -1,28 +1,38 @@
-<div class="container pages-home">
-  <div class="row">
-    <div class="arrows col-12">
-      <% unless @page.zero? %>
-        <%= link_to 'Previous', root_path(page: @page - 1), class: 'btn btn-sm btn-outline-primary'  %>
-      <% end %>
-      <div>
-        <%= @start_id %> to <%= @end_id %> / <%= @number_of_results %> results
-      </div>
-      <% unless @number_of_results < @page * 100 %>
-        <%= link_to 'Next', root_path(page: @page + 1 ), class: 'btn btn-sm btn-outline-primary' %>
-      <% end %>
-    </div>
-    <% @tribe_members.each do |tribe_member| %>
-      <div class="col-6 col-lg-4 col-xl-3">
-        <div class="card-tribe-member">
-          <div class="full-name"><%= tribe_member.full_name %></div>
-          <div class="infos">
-            🎂 <%= tribe_member.birthdate_display %> <br>
-            <% if tribe_member.ancestor %>
-            👴 <%= tribe_member.ancestor.full_name %>
-            <% end %>
+<div class="pages-home">
+  <div class="list container-fluid">
+    <div class="row">
+      <% @tribe_members.each do |tribe_member| %>
+        <div class="col-6 col-lg-4">
+          <div class="card-tribe-member">
+            <div class="full-name"><%= tribe_member.full_name %></div>
+            <div class="infos">
+              🎂 <%= tribe_member.birthdate_display %> <br>
+              <% if tribe_member.ancestor %>
+              👴 <%= tribe_member.ancestor.full_name %>
+              <% end %>
+            </div>
           </div>
         </div>
+      <% end %>
+      <div class="arrows col-12">
+        <% unless @page.zero? %>
+          <%= link_to 'Previous', root_path(page: @page - 1), class: 'btn btn-sm btn-outline-primary'  %>
+        <% end %>
+        <div>
+          <%= @start_id %> to <%= @end_id %> / <%= @number_of_results %> results
+        </div>
+        <% unless @number_of_results < @page * 100 %>
+          <%= link_to 'Next', root_path(page: @page + 1 ), class: 'btn btn-sm btn-outline-primary' %>
+        <% end %>
       </div>
-    <% end %>
+    </div>
   </div>
+  <div
+    id="map"
+    data-markers="<%= @markers.to_json %>"
+    data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+  ></div>
 </div>
+
+
+
