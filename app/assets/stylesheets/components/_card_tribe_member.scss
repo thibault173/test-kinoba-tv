@@ -1,0 +1,14 @@
+.card-tribe-member {
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(0,0,0,0.1);
+  margin: 10px;
+  height: 100px;
+  background-color: white;
+  .full-name {
+    text-align: center;
+  }
+  .infos {
+    color: gray;
+    padding: 10px;
+  }
+}
