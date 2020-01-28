@@ -10,10 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2020_01_28_084912) do
 
-  create_table "tribe_members", id: false, force: :cascade do |t|
-    t.integer "id"
+  create_table "tribe_members", force: :cascade do |t|
     t.text "name"
     t.text "surname"
     t.date "birthdate"
