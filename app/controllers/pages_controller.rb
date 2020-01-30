@@ -5,6 +5,7 @@ class PagesController < ApplicationController
     @number_of_results = @tribe_members_result.count
     @tribe_members_to_display = display
     set_markers
+    @ancestors_in_select2 = TribeMember.first(50) # performance problem with all db
   end
 
   private
@@ -21,6 +22,7 @@ class PagesController < ApplicationController
   def search
     scope = TribeMember.includes(:ancestor).all
     scope = scope.search_by_birthdate(Date.parse(params[:birthdate])) unless params[:birthdate].blank?
+    scope = scope.search_by_ancestor_id(params[:ancestor_id]) if params[:ancestor_id]
     scope = scope.search_by_name(params[:name]) if params[:name]
     scope = scope.search_by_surname(params[:surname]) if params[:surname]
     scope
