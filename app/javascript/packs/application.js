@@ -4,6 +4,9 @@ require("channels")
 
 import "bootstrap";
 
-import { initMapbox } from '../plugins/init_mapbox';
+import initFlatpickr from '../plugins/init_flatpickr.js'
+import initMapbox from '../plugins/init_mapbox.js'
 
-initMapbox();
+initFlatpickr()
+initMapbox()
+

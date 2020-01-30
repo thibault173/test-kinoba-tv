@@ -20,3 +20,13 @@
 .pages-home form {
   padding: 10px;
 }
+
+.pages-home form .form-control:disabled, .form-control[readonly] {
+  background-color: white;
+}
+
+.pages-home .form-row {
+  > * {
+    padding: 5px;
+  }
+}
