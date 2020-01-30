@@ -10,6 +10,7 @@ gem 'sqlite3'
 
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass', '~> 5.6.1'
+gem 'httparty', '~>0.17.0'
 gem 'sassc-rails'
 gem 'simple_form'
 gem 'uglifier'
