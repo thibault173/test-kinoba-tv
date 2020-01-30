@@ -3,6 +3,10 @@
 class TribeMember < ApplicationRecord
   self.primary_key = "id"
 
+  validates :name, presence: true
+  validates :surname, presence: true
+  validates :birthdate, presence: true
+
   has_many :descendants, class_name: "TribeMember", foreign_key: "ancestor_id"
   belongs_to :ancestor, class_name: "TribeMember", optional: true
 

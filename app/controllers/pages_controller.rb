@@ -11,12 +11,14 @@ class PagesController < ApplicationController
   private
 
   def set_markers
-    @markers = @tribe_members_to_display.map do |tribe_member|
-      {
-        lat: tribe_member.latitude,
-        lng: tribe_member.longitude
-      }
-    end
+    @markers = @tribe_members_to_display
+      .reject { |tribe_member| tribe_member.latitude.nil? }
+      .map do |tribe_member|
+        {
+          lat: tribe_member.latitude,
+          lng: tribe_member.longitude
+        }
+      end
   end
 
   def search

@@ -1,0 +1,28 @@
+<div class="container tribe-member-new">
+  <%= simple_form_for @tribe_member do |f| %>
+    <%= f.input :name %>
+    <%= f.input :surname %>
+    <%= f.input :birthdate,
+                as: :string,
+                input_html: {
+                  id: "flatpickr-input-birthdate"
+                }
+    %>
+    <%= f.input :ancestor_id,
+                as: :select,
+                include_blank: true,
+                collection: TribeMember.first(50),
+                label_method: :full_name,
+                value_method: :id,
+                input_html: {
+                  id: "select2-ancestor"
+                }
+    %> <!-- Performance issue with all db -->
+    <%= f.simple_fields_for :address do |a| %>
+      <%= a.input :street, required: false %>
+      <%= a.input :city, required: false %>
+      <%= a.input :state, required: false %>
+    <% end %>
+    <%= f.button :submit, class: 'btn btn-primary w-100' %>
+  <% end %>
+</div>
