@@ -1,7 +1,45 @@
 <div class="pages-home">
   <div class="list container-fluid">
     <div class="row">
-      <% @tribe_members.each do |tribe_member| %>
+      <div class="col-12">
+        <i class="fas fa-filter"></i> Filters  <%= link_to "Reset filters", root_path %>
+        <%= form_tag root_path, method: :get do %>
+          <div class="form-row">
+            <div class="input-group col-6">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  Name
+                </div>
+              </div>
+              <%= text_field_tag :name,
+                                 value = params[:name],
+                                 class: "form-control",
+                                 placeholder: "Filter by name"
+              %>
+            </div>
+            <div class="input-group col-6">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  Surname
+                </div>
+              </div>
+              <%= text_field_tag :surname,
+                                 value = params[:surname],
+                                 class: "form-control",
+                                 placeholder: "Filter by surname"
+              %>
+            </div>
+            <div class="offset-sm-9 col-3 my-1">
+              <button type="submit" class="btn btn-primary w-100">Submit</button>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="col-12">
+        <%= @number_of_results %> results
+        <hr>
+      </div>
+      <% @tribe_members_to_display.each do |tribe_member| %>
         <div class="col-6 col-lg-4">
           <div class="card-tribe-member">
             <div class="full-name"><%= tribe_member.full_name %></div>
@@ -16,13 +54,13 @@
       <% end %>
       <div class="arrows col-12">
         <% unless @page.zero? %>
-          <%= link_to 'Previous', root_path(page: @page - 1), class: 'btn btn-sm btn-outline-primary'  %>
+          <%= link_to 'Previous', root_path(@params.merge(page: @page - 1)), class: 'btn btn-sm btn-outline-primary'  %>
         <% end %>
         <div>
-          <%= @start_id %> to <%= @end_id %> / <%= @number_of_results %> results
+          <%= @first_result %> to <%= @last_result %>
         </div>
-        <% unless @number_of_results < @page * 100 %>
-          <%= link_to 'Next', root_path(page: @page + 1 ), class: 'btn btn-sm btn-outline-primary' %>
+        <% if @number_of_results > ((@page + 1) * 100) %>
+          <%= link_to 'Next', root_path(@params.merge(page: @page + 1)), class: 'btn btn-sm btn-outline-primary' %>
         <% end %>
       </div>
     </div>
