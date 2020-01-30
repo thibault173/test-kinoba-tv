@@ -8,6 +8,7 @@ class TribeMember < ApplicationRecord
 
   scope :search_by_name, ->(name) { where("name LIKE ?", "%#{name}%") }
   scope :search_by_surname, ->(surname) { where("surname LIKE ?", "%#{surname}%") }
+  scope :search_by_birthdate, ->(birthdate) { where("birthdate = ?", birthdate.strftime("%d/%m/%Y")) }
 
   def birthdate_display
     birthdate.strftime('%d %b %Y')

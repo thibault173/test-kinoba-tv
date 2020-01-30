@@ -29,6 +29,19 @@
                                  placeholder: "Filter by surname"
               %>
             </div>
+            <div class="input-group col-6">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  Birthdate
+                </div>
+              </div>
+              <%= date_field_tag :birthdate,
+                                 value = params[:birthdate],
+                                 class: "form-control",
+                                 id: "flatpickr-search-birthdate",
+                                 placeholder: "Filter by birthdate"
+              %>
+            </div>
             <div class="offset-sm-9 col-3 my-1">
               <button type="submit" class="btn btn-primary w-100">Submit</button>
             </div>
