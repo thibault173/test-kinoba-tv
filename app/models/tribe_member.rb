@@ -6,6 +6,9 @@ class TribeMember < ApplicationRecord
   has_many :descendants, class_name: "TribeMember", foreign_key: "ancestor_id"
   belongs_to :ancestor, class_name: "TribeMember", optional: true
 
+  scope :search_by_name, ->(name) { where("name LIKE ?", "%#{name}%") }
+  scope :search_by_surname, ->(surname) { where("surname LIKE ?", "%#{surname}%") }
+
   def birthdate_display
     birthdate.strftime('%d %b %Y')
   end
