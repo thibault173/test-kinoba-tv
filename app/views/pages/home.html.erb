@@ -42,6 +42,17 @@
                                  placeholder: "Filter by birthdate"
               %>
             </div>
+            <div class="input-group col-6">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  Ancestor
+                </div>
+              </div>
+              <%= select_tag :ancestor_id,
+                             options_from_collection_for_select(@ancestors_in_select2, "id", "full_name", params[:ancestor_id]),
+                             include_blank: true,
+                             id: "select2-ancestor" %>
+            </div>
             <div class="offset-sm-9 col-3 my-1">
               <button type="submit" class="btn btn-primary w-100">Submit</button>
             </div>
