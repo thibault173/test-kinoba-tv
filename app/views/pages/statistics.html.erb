@@ -1,0 +1,20 @@
+<div class="container">
+  <h1>My tribe</h1>
+  <hr>
+  <p>
+    <h3>Number of members : <%= @tribe_size %></h3>
+    <h3>Average age : xxx years</h3>
+    <h3>Oldest member : </h3>
+    <div class="col-6 col-lg-4">
+      <div class="card-tribe-member">
+        <div class="full-name"><%= @oldest_member.full_name %></div>
+        <div class="infos">
+          🎂 <%= @oldest_member.birthdate_display %> <br>
+          <% if @oldest_member.ancestor %>
+          👴 <%= @oldest_member.ancestor.full_name %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </p>
+</div>
