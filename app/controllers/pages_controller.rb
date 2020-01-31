@@ -22,9 +22,9 @@ class PagesController < ApplicationController
   def search
     scope = TribeMember.includes(:ancestor).all
     scope = scope.search_by_birthdate(Date.parse(params[:birthdate])) unless params[:birthdate].blank?
-    scope = scope.search_by_ancestor_id(params[:ancestor_id]) if params[:ancestor_id]
-    scope = scope.search_by_name(params[:name]) if params[:name]
-    scope = scope.search_by_surname(params[:surname]) if params[:surname]
+    scope = scope.search_by_ancestor_id(params[:ancestor_id]) unless params[:ancestor_id].blank?
+    scope = scope.search_by_name(params[:name]) unless params[:name].blank?
+    scope = scope.search_by_surname(params[:surname]) unless params[:surname].blank?
     scope
   end
 
