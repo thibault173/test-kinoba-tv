@@ -8,6 +8,12 @@ class PagesController < ApplicationController
     @ancestors_in_select2 = TribeMember.first(50) # performance problem with all db
   end
 
+  def statistics
+    @tribe_size = TribeMember.count
+    # @average_age =
+    @oldest_member = TribeMember.order(birthdate: :asc).first
+  end
+
   private
 
   def set_markers
