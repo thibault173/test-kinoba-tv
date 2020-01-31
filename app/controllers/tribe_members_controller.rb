@@ -4,7 +4,10 @@ class TribeMembersController < ApplicationController
   end
 
   def create
-    @tribe_member = TribeMember.new(tribe_member_params)
+    @tribe_member = TribeMember.new(
+      tribe_member_params.merge(birthdate: Date.parse(params[:tribe_member][:birthdate]).strftime("%d/%m/%Y"))
+    )
+    raise
     if @tribe_member.save
       geocode_address
       redirect_to root_path
@@ -17,7 +20,7 @@ class TribeMembersController < ApplicationController
 private
 
   def tribe_member_params
-    params.require(:tribe_member).permit(:name, :surname, :birthdate, :ancestor_id)
+    params.require(:tribe_member).permit(:name, :surname, :ancestor_id)
   end
 
   def geocode_address
